@@ -12,6 +12,14 @@
         <servlet-name>AddDVDServlet</servlet-name>
         <servlet-class>com.hagos.controller.AddDVDServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SuccessServlet</servlet-name>
+        <servlet-class>com.hagos.view.SuccessServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ErrorPageServlet</servlet-name>
+        <servlet-class>com.hagos.view.ErrorPageServlet</servlet-class>
+    </servlet>
 
     <!-- Servlet Mapping URL -->
     <servlet-mapping>
@@ -21,6 +29,14 @@
     <servlet-mapping>
         <servlet-name>AddDVDServlet</servlet-name>
         <url-pattern>/adddvdservlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SuccessServlet</servlet-name>
+        <url-pattern>/success.view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ErrorPageServlet</servlet-name>
+        <url-pattern>/error.view</url-pattern>
     </servlet-mapping>
     
     <!-- Session Behavior Settings -->

@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hagos.controller;
+package com.hagos.view;
 
 import com.hagos.model.DvdItem;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ghagos
+ * @author GHagos
  */
-public class AddDVDServlet extends HttpServlet {
+public class SuccessServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,34 +31,24 @@ public class AddDVDServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String title = (String) request.getParameter("title");
-        String year = (String) request.getParameter("year");
-        String genre = (String) request.getParameter("genre");
-        String newgenre = (String) request.getParameter("newgenre");
         
-        if (newgenre != null && newgenre.length() != 0) {
-            genre = newgenre;
-        }
+        DvdItem dvdItem = (DvdItem) request.getAttribute("dvdItem");
         
-        List<String> errors = new ArrayList<>();
-        if (title == null || title.length() == 0 ) {
-            errors.add("Title cannot be empty.");
-        }
-        if (year == null || year.length() == 0) {
-            errors.add("Year cannot be empty.");
-        }
-        
-        RequestDispatcher rd;
-        if (errors.isEmpty()) {
-            DvdItem dvdItem = new DvdItem(title, year, genre);
-            request.setAttribute("dvdItem", dvdItem);
-        
-            rd = (RequestDispatcher) request.getRequestDispatcher("success.view");
-            rd.forward(request, response); 
-        } else {
-            request.setAttribute("errors", errors);
-            rd = (RequestDispatcher) request.getRequestDispatcher("error.view");
-            rd.forward(request, response); 
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SuccessServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h3>Servlet SuccessServlet at " + request.getContextPath() + "</h3>");
+            out.println("You have successfully added the following dvd:");
+            out.println("<li>Title: " + dvdItem.getTitle() + "</li>");
+            out.println("<li>Year: " + dvdItem.getYear() + "</li>");
+            out.println("<li>Genre: " + dvdItem.getGenre() + "</li>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

@@ -3,23 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hagos.controller;
+package com.hagos.view;
 
-import com.hagos.model.DvdItem;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ghagos
+ * @author GHagos
  */
-public class AddDVDServlet extends HttpServlet {
+public class ErrorPageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,34 +32,26 @@ public class AddDVDServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String title = (String) request.getParameter("title");
-        String year = (String) request.getParameter("year");
-        String genre = (String) request.getParameter("genre");
-        String newgenre = (String) request.getParameter("newgenre");
-        
-        if (newgenre != null && newgenre.length() != 0) {
-            genre = newgenre;
-        }
-        
-        List<String> errors = new ArrayList<>();
-        if (title == null || title.length() == 0 ) {
-            errors.add("Title cannot be empty.");
-        }
-        if (year == null || year.length() == 0) {
-            errors.add("Year cannot be empty.");
-        }
-        
-        RequestDispatcher rd;
-        if (errors.isEmpty()) {
-            DvdItem dvdItem = new DvdItem(title, year, genre);
-            request.setAttribute("dvdItem", dvdItem);
-        
-            rd = (RequestDispatcher) request.getRequestDispatcher("success.view");
-            rd.forward(request, response); 
-        } else {
-            request.setAttribute("errors", errors);
-            rd = (RequestDispatcher) request.getRequestDispatcher("error.view");
-            rd.forward(request, response); 
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            
+            ArrayList<String> errorList = (ArrayList) request.getAttribute("errors");
+            
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ErrorPageServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h3>Servlet ErrorPageServlet at " + request.getContextPath() + "</h3>");
+            out.println("<font color='red'>");
+            out.println("Please correct the following errors");
+            for (String error : errorList) {
+                out.println("<li>" + error + "</li>");
+            }
+            out.println("</font>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
