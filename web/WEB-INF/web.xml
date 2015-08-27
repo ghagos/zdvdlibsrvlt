@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <!-- Servlet Class Definition -->
     <servlet>
         <servlet-name>ListLibraryServlet</servlet-name>
@@ -20,7 +17,15 @@
         <servlet-name>ErrorPageServlet</servlet-name>
         <servlet-class>com.hagos.view.ErrorPageServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>AddDVDFormServlet</servlet-name>
+        <servlet-class>com.hagos.view.AddDVDFormServlet</servlet-class>
+        <init-param>
+            <description>Some DVD Geners</description>
+            <param-name>genre-list</param-name>
+            <param-value>Sci-Fi, Drama, Comedy, Musical, Romance, Action</param-value>
+        </init-param>
+    </servlet>
     <!-- Servlet Mapping URL -->
     <servlet-mapping>
         <servlet-name>ListLibraryServlet</servlet-name>
@@ -38,14 +43,16 @@
         <servlet-name>ErrorPageServlet</servlet-name>
         <url-pattern>/error.view</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>AddDVDFormServlet</servlet-name>
+        <url-pattern>/adddvd.view</url-pattern>
+    </servlet-mapping>
     <!-- Session Behavior Settings -->
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-
     <!-- Entry Page -->
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
