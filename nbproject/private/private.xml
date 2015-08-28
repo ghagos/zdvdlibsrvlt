@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/zwork/zdev/zdvdlibsrvlt/src/java/com/hagos/model/DvdItem.java</file>
             <file>file:/C:/zwork/zdev/zdvdlibsrvlt/src/java/com/hagos/controller/AddDVDServlet.java</file>
-            <file>file:/C:/zwork/zdev/zdvdlibsrvlt/web/adddvd.html</file>
             <file>file:/C:/zwork/zdev/zdvdlibsrvlt/web/index.html</file>
-            <file>file:/C:/zwork/zdev/zdvdlibsrvlt/src/java/com/hagos/view/ListLibraryServlet.java</file>
+            <file>file:/C:/zwork/zdev/zdvdlibsrvlt/src/java/com/hagos/view/SuccessServlet.java</file>
             <file>file:/C:/zwork/zdev/zdvdlibsrvlt/web/WEB-INF/web.xml</file>
+            <file>file:/C:/zwork/zdev/zdvdlibsrvlt/src/java/com/hagos/view/AddDVDFormServlet.java</file>
         </group>
     </open-files>
 </project-private>
