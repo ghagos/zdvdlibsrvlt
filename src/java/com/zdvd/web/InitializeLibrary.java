@@ -27,22 +27,21 @@ public class InitializeLibrary implements ServletContextListener{
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         InputStream is = null;
-        BufferedReader br = null;
         InputStreamReader isr = null;
+        BufferedReader br = null;
         
         try {
             List<DvdItem> dvdList = new ArrayList<>();
 
             ServletContext context = sce.getServletContext();
             String dataFile = context.getInitParameter("library-file");
-            is = sce.getServletContext().getResourceAsStream(dataFile);
             
+            is = context.getResourceAsStream(dataFile);      
             isr = new InputStreamReader(is);
             br = new BufferedReader(isr);
             
             String line;        
             while ((line = br.readLine()) != null) {
-                
                 String[] elements = line.split("\\|");
                 String title = elements[0];
                 String year = elements[1];
