@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <!-- Servlet Context Listener Loaded by the container-->
+    <context-param>
+        <description>Library of DVD titles, year and genre</description>
+        <param-name>library-file</param-name>
+        <param-value>/WEB-INF/data/my-library.txt</param-value>
+    </context-param>
+    <listener>
+        <description>Initializes the dvd list items</description>
+        <listener-class>com.zdvd.web.InitializeLibrary</listener-class>
+    </listener>
     <!-- Servlet Class Definition -->
     <servlet>
         <servlet-name>ListLibraryServlet</servlet-name>
-        <servlet-class>com.hagos.view.ListLibraryServlet</servlet-class>
+        <servlet-class>com.zdvd.view.ListLibraryServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddDVDServlet</servlet-name>
-        <servlet-class>com.hagos.controller.AddDVDServlet</servlet-class>
+        <servlet-class>com.zdvd.controller.AddDVDServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SuccessServlet</servlet-name>
-        <servlet-class>com.hagos.view.SuccessServlet</servlet-class>
+        <servlet-class>com.zdvd.view.SuccessServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ErrorPageServlet</servlet-name>
@@ -19,7 +29,7 @@
     </servlet>
     <servlet>
         <servlet-name>AddDVDFormServlet</servlet-name>
-        <servlet-class>com.hagos.view.AddDVDFormServlet</servlet-class>
+        <servlet-class>com.zdvd.view.AddDVDFormServlet</servlet-class>
         <init-param>
             <description>Some DVD Geners</description>
             <param-name>genre-list</param-name>
